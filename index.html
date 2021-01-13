@@ -92,7 +92,7 @@
 				if (clicked == 1) {
 					console.log('"x":' + parseInt(e.latlng.lat) + ', "y":' + parseInt(e.latlng.lng));
 					var res = reconvertXYToLngLat(e.latlng.lat, e.latlng.lng);
-					document.getElementById("coordinateLabel").innerHTML = "点击坐标 x："+parseInt(e.latlng.lat)+" y："+parseInt(e.latlng.lng) +"<br> 纬度：" +res.lat+" 经度："+res.lng;
+					document.getElementById("coordinateLabel").innerHTML = "点击坐标 x："+parseInt(e.latlng.lat)+" y："+parseInt(e.latlng.lng) +"<br> 纬度：" +res.lng+" 经度："+res.lat;
 					
 					console.log("cordinate: " + res.lat + "," + res.lng);
 					clicked = 0;
