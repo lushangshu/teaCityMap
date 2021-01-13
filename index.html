@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>茶城地图</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" /> -->
+		<link rel="stylesheet" href="leaflet.css" />
+		<script src="leaflet.js"></script>
+		<script src="route.js"></script>
+		<script src="routeCalculate.js"></script>
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=a163dff5988f8ad8b34223d6e8199ecc"></script>
+		<script src="leaflet.canvas-markers.js"></script>
+		<script src="leaflet-ant-path.js"></script>
+		<style>
+			html,
+			body,#map {
+				height: 100%;
+				padding: 0;
+				margin: 0;
+				background-color:#ddcfa6 ;
+			}
+			#views{
+				position: absolute;
+				color: #FFFFFF;
+				bottom: 20px;
+				margin: 20px;
+				z-index: 9900;
+				
+			}
+			#coordinateLabel{
+				background-color: #333333;
+				position: absolute;
+				color: #FFFFFF;
+				bottom: 20px;
+				margin: 20px;
+				z-index: 9900;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div id='map'></div>
+		
+		<div>
+			<label class="coordinateLabel" id="coordinateLabel"></label>
+		</div>
+		
+
+	</body>
+
+	<script type="text/javascript">
+		
+		var markers = [];
+
+		var markerGroup; //管理店铺等marker的layer
+		var userMarkerLayer;
+		var startMarker, destinationMarker;
+		var polyline;
+		var isUserLocationShown = false;
+		var isStorePolygonShown = false;
+		var polygonLayers;
+		var polygons = [];
+		var polygonArray = [];
+		var buildings = routeJSON.buildings;
+		var mapArr = [];
+		var coord = {
+			leftTop: [102.729104, 25.073345],
+			rightTop: [102.731432, 25.073161],
+			leftBottom: [102.728723, 25.071071],
+			rightBottom: [102.731577, 25.071003]
+		}
+		
+	
+		var TeststartPos = {x: 0,y: 0};
+		var TestendPos = {x: 0,y: 0};
+
+		var map = L.map('map', {
+			crs: L.CRS.Simple,
+			maxZoom: 5,
+			attributionControl: false,
+			zoomControl: true,
+			center: [100, 110],
+			zoom: 2
+		});
+		var clicked = 0;
+		map.on('click', function(e) {
+			clicked = 1;
+			setTimeout(function() {
+				if (clicked == 1) {
+					console.log('"x":' + parseInt(e.latlng.lat) + ', "y":' + parseInt(e.latlng.lng));
+					var res = reconvertXYToLngLat(e.latlng.lat, e.latlng.lng);
+					document.getElementById("coordinateLabel").innerHTML = "点击坐标 x："+parseInt(e.latlng.lat)+" y："+parseInt(e.latlng.lng) +"<br> 纬度：" +res.lat+" 经度："+res.lng;
+					
+					console.log("cordinate: " + res.lat + "," + res.lng);
+					clicked = 0;
+					
+					if (TeststartPos.x == 0) {
+						TeststartPos.x = parseInt(e.latlng.lat);
+						TeststartPos.y = parseInt(e.latlng.lng);
+					} else {
+						TestendPos.x = parseInt(e.latlng.lat);
+						TestendPos.y = parseInt(e.latlng.lng);
+						TeststartPos = {x: 0,y: 0};
+						TestendPos = {x: 0,y: 0};
+					}
+				}
+			}, 500);
+		});
+		map.on('dblclick', function(event) {
+			clicked = 0;
+		});
+		/*
+			根据地图的放大缩小尺寸来设置高清图
+		*/
+		map.on('zoomend', function() {
+			console.log("map zoom" + map.getZoom());
+			var zoomLevel = map.getZoom();
+		
+		});
+		map.getZoom()
+		var bounds = [
+			[0, 0],
+			[200, 200]
+		];
+		var image = L.imageOverlay('https://s3.ax1x.com/2021/01/06/sVFNu9.jpg', bounds).addTo(map);
+		//getUserLocation()
+		setQueryNavRoute();
+		
+		var latLngLeftTop = L.latLng(coord.leftTop[1], coord.leftTop[0]);
+		var latLngRightTop = L.latLng(coord.rightTop[1], coord.rightTop[0]);
+		var latLngLeftBottom = L.latLng(coord.leftBottom[1], coord.leftBottom[0]);
+		var latLngRightBottom = L.latLng(coord.rightBottom[1], coord.rightBottom[0]);
+
+		var resPointlt = map.latLngToContainerPoint(latLngLeftTop);
+		var resPointrt = map.latLngToContainerPoint(latLngRightTop);
+		var resPointlb = map.latLngToContainerPoint(latLngLeftBottom);
+		var resPointrb = map.latLngToContainerPoint(latLngRightBottom);
+	
+
+
+	</script>
+
+</html>
