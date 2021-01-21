@@ -279,7 +279,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-bar a,
 .leaflet-bar a:hover {
-	background-color: #fff;
+	background-color: #faf2de; //按钮可以点击
 	border-bottom: 1px solid #ccc;
 	width: 26px;
 	height: 26px;
@@ -287,7 +287,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	display: block;
 	text-align: center;
 	text-decoration: none;
-	color: black;
+	color: #b5a883; //+-颜色
 	}
 .leaflet-bar a,
 .leaflet-control-layers-toggle {
@@ -296,7 +296,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	display: block;
 	}
 .leaflet-bar a:hover {
-	background-color: #f4f4f4;
+	background-color: #faf2de;
 	}
 .leaflet-bar a:first-child {
 	border-top-left-radius: 4px;
@@ -309,22 +309,23 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-bar a.leaflet-disabled {
 	cursor: default;
-	background-color: #f4f4f4;
-	color: #bbb;
+	background-color: #faf2de;
+	color: #b5a883; // 按钮不能点击
 	}
 
 .leaflet-touch .leaflet-bar a {
 	width: 30px;
 	height: 30px;
 	line-height: 30px;
+
 	}
 .leaflet-touch .leaflet-bar a:first-child {
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
+
+	border-radius: 5px;
+	margin-bottom: 5px;
 	}
 .leaflet-touch .leaflet-bar a:last-child {
-	border-bottom-left-radius: 2px;
-	border-bottom-right-radius: 2px;
+	border-radius: 5px;
 	}
 
 /* zoom control */
@@ -456,8 +457,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-touch .leaflet-control-layers,
 .leaflet-touch .leaflet-bar {
-	border: 2px solid rgba(0,0,0,0.2);
+	border: 2px ;
 	background-clip: padding-box;
+
 	}
 
 
@@ -556,8 +558,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* div icon */
 
 .leaflet-div-icon {
-	background: #fff;
-	border: 1px solid #666;
+	/* background: #fff;
+	border: 1px solid #666; */
 	}
 
 
