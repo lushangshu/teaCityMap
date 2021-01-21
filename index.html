@@ -26,7 +26,7 @@
 				bottom: 20px;
 				margin: 20px;
 				z-index: 9900;
-				
+
 			}
 			#coordinateLabel{
 				background-color: #333333;
@@ -43,16 +43,16 @@
 	<body>
 
 		<div id='map'></div>
-		
+
 		<div>
 			<label class="coordinateLabel" id="coordinateLabel"></label>
 		</div>
-		
+
 
 	</body>
 
 	<script type="text/javascript">
-		
+
 		var markers = [];
 
 		var markerGroup; //管理店铺等marker的layer
@@ -72,8 +72,8 @@
 			leftBottom: [102.728723, 25.071071],
 			rightBottom: [102.731577, 25.071003]
 		}
-		
-	
+
+
 		var TeststartPos = {x: 0,y: 0};
 		var TestendPos = {x: 0,y: 0};
 
@@ -93,10 +93,10 @@
 					console.log('"x":' + parseInt(e.latlng.lat) + ', "y":' + parseInt(e.latlng.lng));
 					var res = reconvertXYToLngLat(e.latlng.lat, e.latlng.lng);
 					document.getElementById("coordinateLabel").innerHTML = "点击坐标 x："+parseInt(e.latlng.lat)+" y："+parseInt(e.latlng.lng) +"<br> 纬度：" +res.lng+" 经度："+res.lat;
-					
+
 					console.log("cordinate: " + res.lat + "," + res.lng);
 					clicked = 0;
-					
+
 					if (TeststartPos.x == 0) {
 						TeststartPos.x = parseInt(e.latlng.lat);
 						TeststartPos.y = parseInt(e.latlng.lng);
@@ -118,17 +118,17 @@
 		map.on('zoomend', function() {
 			console.log("map zoom" + map.getZoom());
 			var zoomLevel = map.getZoom();
-		
+
 		});
 		map.getZoom()
 		var bounds = [
 			[0, 0],
 			[200, 200]
 		];
-		var image = L.imageOverlay('https://s3.ax1x.com/2021/01/14/saSw9K.jpg', bounds).addTo(map);
+		var image = L.imageOverlay('https://s3.ax1x.com/2021/01/21/sfzggK.jpg', bounds).addTo(map);
 		//getUserLocation()
 		setQueryNavRoute();
-		
+
 		var latLngLeftTop = L.latLng(coord.leftTop[1], coord.leftTop[0]);
 		var latLngRightTop = L.latLng(coord.rightTop[1], coord.rightTop[0]);
 		var latLngLeftBottom = L.latLng(coord.leftBottom[1], coord.leftBottom[0]);
@@ -138,7 +138,7 @@
 		var resPointrt = map.latLngToContainerPoint(latLngRightTop);
 		var resPointlb = map.latLngToContainerPoint(latLngLeftBottom);
 		var resPointrb = map.latLngToContainerPoint(latLngRightBottom);
-	
+
 
 
 	</script>
